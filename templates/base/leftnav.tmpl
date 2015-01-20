@@ -1,0 +1,31 @@
+		<!-- BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+		<div class="bottom">
+			<div class="container">
+				<div class="row">
+					<!-- left sidebar -->
+					<div class="col-md-2 left-sidebar">
+
+						<!-- main-nav -->
+						<nav class="main-nav">
+
+							<ul class="main-menu">
+                            {{if .auth.IsAdmin}}
+                            {{if eq .page "dashboard"}}<li class="active">{{else}}<li>{{end}}
+									<a href="/admin/"><i class="fa fa-dashboard fa-fw"></i>
+										<span class="text">{{__ ("Dashboard")}}</span>
+									</a>
+								</li>
+                                {{end}}
+{{if eq .page "profile"}}<li class="active">{{else}}<li>{{end}}
+									<a href="/user/profile"><i class="fa fa-edit fw"></i>
+										<span class="text">{{__ ("Profile")}}</span>
+									</a>
+                                </li>
+							</ul>
+						</nav>
+						<!-- /main-nav -->
+						<div class="sidebar-minified js-toggle-minified">
+							<i class="fa fa-angle-left"></i>
+						</div>
+					</div>
+					<!-- end left sidebar -->

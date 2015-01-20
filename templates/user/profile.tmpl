@@ -1,0 +1,256 @@
+{{__ ("Profile")|set . "Title"}}
+
+{{template "base/header" .}}
+
+<body>
+	<!-- WRAPPER -->
+	<div class="wrapper">
+		{{template "base/topbar" .}}
+		{{template "base/leftnav" .}}
+		{{template "base/alert" .}}
+		<!-- content-wrapper -->
+		<div class="col-md-10 content-wrapper">
+			<div class="row">
+				<div class="col-lg-4 ">
+					<ul class="breadcrumb">
+						<li><i class="fa fa-home"></i>
+							<a href="#">{{__ ("Home")}}</a>
+						</li>
+						<li class="active">{{__ ("Profile")}}</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- main -->
+			<div class="content">
+				<div class="main-header">
+					<h2>{{__ ("Profile")}}</h2>
+					<em>{{__ ("User profile page")}}</em>
+				</div>
+
+				<div class="main-content">
+					<!-- NAV TABS -->
+					<ul class="nav nav-tabs nav-tabs-custom-colored tabs-iconized">
+						<li class="active">
+							<a href="#profile-tab" data-toggle="tab"><i class="fa fa-user"></i>{{__ ("User Info")}}</a>
+						</li>
+						<li>
+							<a href="#activity-tab" data-toggle="tab"><i class="fa fa-rss"></i>{{__ ("Recent Activity")}}</a>
+						</li>
+						<li>
+							<a href="#settings-tab" data-toggle="tab"><i class="fa fa-gear"></i>{{__ ("Settings")}}</a>
+						</li>
+					</ul>
+					<!-- END NAV TABS -->
+
+					<div class="tab-content profile-page">
+						<!-- PROFILE TAB CONTENT -->
+						<div class="tab-pane profile active" id="profile-tab">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="user-info-left">
+										<img src="/assets/img/profile-avatar.png" alt="Profile Picture" />
+										<h2>{{.user.Username}}{{if .user.IsActive}}<i class="fa fa-circle green-font online-icon"></i><sup class="sr-only">online</sup>{{else}}<i class="fa fa-circle gray-font offline-icon"></i><sup class="sr-only">offline</sup>{{end}}</h2>
+									</div>
+									<div class="data-name">{{__ ("Net Traffic Usage")}}</div>
+									<div class="data-value">
+										{{.traffic.used }} / {{.traffic.count}}
+										<div class="progress progress-xs">
+											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{.traffic.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{.traffic.percent}}%">
+												<span class="sr-only">{{.traffic.percent}}%</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="user-info-right">
+										<div class="basic-info">
+											<h3><i class="fa fa-square"></i> {{__ ("Basic Information")}}</h3>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Username")}}</span>
+											<span class="data-value">{{.user.Username}}</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Full Name")}}</span>
+											<span class="data-value">{{.user.Fullname}}</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Port")}}</span>
+											<span class="data-value">{{.user.Port}}</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Method")}}</span>
+											<span class="data-value">{{.user.Method}}</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Email")}}</span>
+											<span class="data-value">
+												<a href="mailto://{{.user.Email}}">{{.user.Email}}</a>
+											</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Last Login")}}</span>
+											<span class="data-value">{{.user.Updated}}</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Date Joined")}}</span>
+											<span class="data-value">{{.user.Created}}</span>
+											</p>
+										</div>
+										<div class="contact_info">
+											<h3><i class="fa fa-square"></i> {{__ ("Contact Information")}}</h3>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Email")}}</span>
+											<span class="data-value">
+												<a href="mailto://{{.user.Email}}">{{.user.Email}}</a>
+											</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Used")}}</span>
+											<span class="data-value">{{.traffic.used}}</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Limit")}}</span>
+											<span class="data-value">{{.traffic.count}}</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Percent")}}</span>
+											<span class="data-value">{{.traffic.percent}}%</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Left")}}</span>
+											<span class="data-value">{{.traffic.left}}</span>
+											</p>
+											<p class="data-row">
+											<span class="data-name">{{__ ("Left Day used")}}</span>
+											<span class="data-value">{{.traffic.dayused}}</span>
+											</p>
+										</div>
+										<div class="about">
+											<h3><i class="fa fa-square"></i>QRCode</h3>
+											<p>Dramatically facilitate proactive solutions whereas professional intellectual capital. Holisticly utilize competitive e-markets through intermandated meta-services. Objectively.</p>
+											<p>Monotonectally foster future-proof infomediaries before principle-centered interfaces. Assertively recaptiualize cutting-edge web services rather than emerging "outside the box" thinking. Phosfluorescently cultivate resource maximizing technologies and user-centric convergence. Completely underwhelm cross functional innovation vis-a-vis.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- END PROFILE TAB CONTENT -->
+
+						<!-- ACTIVITY TAB CONTENT -->
+						<div class="tab-pane activity" id="activity-tab">
+							<ul class="list-unstyled activity-list">
+								{{range .networks}}
+								<li>
+									<i class="fa fa-tasks activity-icon pull-left"></i>
+									<p>
+									Visit <a href="http://{{.Host}}">{{.Host}}</a> used {{.Number}}
+									<span class="timestamp">{{.Created}}</span>
+									</p>
+								</li>
+								{{end}}
+							</ul>
+							<p class="text-center more">
+							<a href="#" class="btn btn-custom-primary">View more <i class="fa fa-long-arrow-right"></i></a>
+							</p>
+						</div>
+						<!-- END ACTIVITY TAB CONTENT -->
+
+						<!-- SETTINGS TAB CONTENT -->
+						<div class="tab-pane settings" id="settings-tab">
+							<form class="form-horizontal" role="form" method="post">
+								<fieldset>
+									<h3><i class="fa fa-square"></i>{{__ ("Profile")}}</h3>
+									<div class="form-group">
+										<label for="password2" class="col-sm-3 control-label">{{__ ("Full Name")}}</label>
+										<div class="col-sm-4">
+											<input type="text" id="fullname" name="fullname" class="form-control" value={{.user.Fullname}}>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="port" class="col-sm-3 control-label">{{__ ("Port")}}</label>
+										<div class="col-sm-4">
+											<input id="portspin" name="port" type="text" class="form-control" value={{.user.Port}}>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="method" class="col-sm-3 control-label">{{__ ("Method")}}</label>
+										<div class="col-sm-4">
+											<div class="widget">
+												<select name="method" id="method" class="select2">
+												{{range $k, $v := .methods}}
+												<option value="{{$k}}" {{$v}}>{{$k}}</option>
+												{{end}}
+												</select>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<h3><i class="fa fa-square"></i> {{__ ("Change Password")}}</h3>
+									<div class="form-group">
+										<label for="old-password" class="col-sm-3 control-label">{{__ ("Old Password")}}</label>
+										<div class="col-sm-4">
+											<input type="password" id="old-password" name="old-password" class="form-control">
+										</div>
+									</div>
+									<hr />
+									<div class="form-group">
+										<label for="password" class="col-sm-3 control-label">{{__ ("New Password")}}</label>
+										<div class="col-sm-4">
+											<input type="password" id="password" name="password" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="password2" class="col-sm-3 control-label">{{__ ("Repeat Password")}}</label>
+										<div class="col-sm-4">
+											<input type="password" id="password2" name="password2" class="form-control">
+										</div>
+									</div>
+								</fieldset>
+								<p class="text-center">
+								<button class="btn btn-custom-primary "><i class="fa fa-floppy-o"></i>{{__ ("Save Changes")}}</button>
+								</p>
+							</form>
+
+						</div>
+						<!-- END SETTINGS TAB CONTENT -->
+					</div>
+
+				</div>
+				<!-- /main-content -->
+			</div>
+			<!-- /main -->
+		</div>
+		<!-- /content-wrapper -->
+	</div>
+	<!-- /row -->
+	</div>
+	<!-- /container -->
+	</div>
+	<!-- END BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+	<div class="push-sticky-footer"></div>
+	</div>
+	<!-- /wrapper -->
+
+	<!-- FOOTER -->
+{{template "base/footer" .}}
+	<!-- END FOOTER -->
+
+	<!-- Javascript -->
+	<script src="/assets/js/jquery/jquery-2.1.0.min.js"></script>
+	<script src="/assets/js/bootstrap/bootstrap.js"></script>
+	<script src="/assets/js/plugins/modernizr/modernizr.js"></script>
+	<script src="/assets/js/plugins/bootstrap-tour/bootstrap-tour.custom.js"></script>
+	<script src="/assets/js/king-common.min.js"></script>
+
+	<script src="/assets/js/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+	<script src="/assets/js/plugins/select2/select2.min.js"></script>
+	<script>
+$(document).ready(function() {
+	$("#portspin").TouchSpin({min:{{.port_min}},max:{{.port_max}},step:1,boostat:5,maxboostedstep:10});
+})
+	</script>
+</body>
+</html>

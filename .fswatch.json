@@ -1,0 +1,21 @@
+{
+    "paths": [
+        "."
+    ],
+    "depth": 2,
+    "exclude": [],
+    "include": [
+        "\\.(go|py|php|tmpl|java|cpp|h|rb)$"
+    ],
+    "command": [
+        "bash",
+        "-c",
+        "godep go build && ./gossadmin"
+    ],
+    "env": {
+        "POWERD_BY": "github.com/codeskyblue/fswatch"
+    },
+    "autorestart": false,
+    "restart-interval": 0,
+    "kill-signal": "KILL"
+}

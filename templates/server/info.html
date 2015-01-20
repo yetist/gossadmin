@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<html>
+		<head>
+			<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+			<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+			<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta http-equiv="refresh" content="10">
+		</head>
+		<body>
+			<div class="jumbotron">
+				<div class="container">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title"><strong>流量信息</strong></h3>
+						</div>
+						<div class="panel-body">
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="{{.Percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{.Percent}}%;">
+									{{.Percent}}%
+								</div>
+							</div>
+							<p>您本月已使用流量 {{.Used}}，剩余流量{{.Count}}，剩余日均可使用流量 {{ .DayUsed }} 。</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	</html>

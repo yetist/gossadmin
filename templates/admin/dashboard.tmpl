@@ -1,0 +1,204 @@
+{{__ ("Dashboard")|set . "Title"}}
+
+{{template "base/header" .}}
+
+<body class="dashboard">
+	<!-- WRAPPER -->
+	<div class="wrapper">
+		{{template "base/topbar" .}}
+		{{template "base/leftnav" .}}
+		{{template "base/alert" .}}
+					<!-- content-wrapper -->
+					<div class="col-md-10 content-wrapper">
+						<div class="row">
+							<div class="col-md-4 ">
+								<ul class="breadcrumb">
+									<li><i class="fa fa-home"></i>
+										<a href="/">{{__ ("Home")}}</a>
+									</li>
+									<li class="active">{{__ ("Dashboard")}}</li>
+								</ul>
+							</div>
+							<div class="col-md-8 ">
+								<div class="top-content">
+									<ul class="list-inline mini-stat">
+										<li>
+											<h5>Users
+												<span class="stat-value stat-color-orange"><i class="fa fa-plus-circle"></i> 81,450</span>
+											</h5>
+										</li>
+										<li>
+											<h5>Actived
+												<span class="stat-value stat-color-blue"><i class="fa fa-plus-circle"></i> 150,743</span>
+											</h5>
+										</li>
+										<li>
+											<h5>CUSTOMERS
+												<span class="stat-value stat-color-seagreen"><i class="fa fa-plus-circle"></i> 43,748</span>
+											</h5>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- main -->
+						<div class="content">
+							<div class="main-header">
+								<h2>DASHBOARD</h2>
+								<em>the first priority information</em>
+							</div>
+
+							<div class="main-content">
+								<div class="row">
+									<div class="col-md-9">
+										<!-- WIDGET NO HEADER -->
+										<div class="widget widget-hide-header">
+											<div class="widget-header hide">
+												<h3>Summary Info</h3>
+											</div>
+											<div class="widget-content">
+												<div class="row">
+													<div class="col-md-3">
+														<div class="easy-pie-chart green" data-percent="70">
+															<span class="percent">30</span>
+														</div>
+														<p class="text-center">Net Traffic Used</p>
+													</div>
+													<div class="col-md-3">
+														<div class="easy-pie-chart red" data-percent="22">
+															<span class="percent">12</span>
+														</div>
+														<p class="text-center">Net in</p>
+													</div>
+													<div class="col-md-3">
+														<div class="easy-pie-chart yellow" data-percent="65">
+															<span class="percent">65</span>
+														</div>
+														<p class="text-center">Net out</p>
+													</div>
+													<div class="col-md-3">
+														<div class="easy-pie-chart red" data-percent="87">
+															<span class="percent">87</span>
+														</div>
+														<p class="text-center">Left</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- WIDGET NO HEADER -->
+									</div>
+								</div>
+
+								<!-- WIDGET TICKET TABLE -->
+								<div class="widget widget-table">
+									<div class="widget-header">
+										<h3><i class="fa fa-group"></i>{{__ ("User List")}}</h3>
+										<em>{{__ ("- List User")}}</em>
+										<div class="btn-group widget-header-toolbar">
+											<a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
+											<a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
+											<a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
+										</div>
+									</div>
+									<div class="widget-content">
+										<table id="ticket-table" class="table table-sorting table-striped">
+											<thead>
+												<tr>
+													<th>{{__ ("Id")}}</th>
+													<th>{{__ ("Username")}}</th>
+													<th>{{__ ("Email")}}</th>
+													<th>{{__ ("Password")}}</th>
+													<th>{{__ ("Port")}}</th>
+													<th>{{__ ("Method")}}</th>
+													<th>{{__ ("Active")}}</th>
+													<th>{{__ ("Admin")}}</th>
+													<th>{{__ ("NetUsed")}}</th>
+													<th>{{__ ("NetLimit")}}</th>
+												</tr>
+											</thead>
+											<tbody>
+												{{$authId := .auth.Id}}
+												{{range .users}}
+												<tr>
+													<td>
+														<!-- Split button -->
+														<div class="dropdown">
+															<button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+																#{{.Id}}
+																<span class="caret"></span>
+															</button>
+															<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+																<li>{{if eq $authId .Id}}<a href="/user/profile">{{else}}<a href="/admin/user/{{.Id}}">{{end}}{{__ ("Edit")}}</a></li>
+																{{if not .IsActive}}<li><a href="/admin/user/{{.Id}}/active">{{__ ("Active")}}</a></li>{{end}}
+																{{if not .IsAdmin}}<li><a href="/admin/user/{{.Id}}/delete">{{__ ("Delete")}}</a></li>{{end}}
+															</ul>
+														</div>
+													</td>
+													<td data-toggle="tooltip" data-placement="bottom" title="{{.Fullname}}">{{.Username}}</td>
+													<td>{{.Email}}</td>
+													<td>{{.Password}}</td>
+													<td>{{.Port}}</td>
+													<td>{{.Method}}</td>
+													<td>
+														{{if .IsActive}}<i class="fa fa-check-square"></i>{{__ ("Yes")}}{{else}}<i class="fa fa-square-o"></i>{{__ ("No")}}{{end}}
+													</td>
+													<td>
+														{{if .IsAdmin}}<i class="fa fa-check-square"></i>{{__ ("Yes")}}{{else}}<i class="fa fa-square-o"></i>{{__ ("No")}}{{end}}
+													</td>
+													<td>
+														<span class="label label-emergency">{{.UsedBytes}}</span>
+													</td>
+													<td>{{.LimitBytes}}</td>
+												</tr>
+												{{end}}
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<!-- END WIDGET TICKET TABLE -->
+
+							</div>
+							<!-- /main-content -->
+						</div>
+						<!-- /main -->
+					</div>
+					<!-- /content-wrapper -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- END BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+		<div class="push-sticky-footer"></div>
+	</div>
+	<!-- /wrapper -->
+
+	<!-- FOOTER -->
+	{{template "base/footer" .}}
+	<!-- END FOOTER -->
+
+	<!-- Javascript -->
+	<script src="/assets/js/jquery/jquery-2.1.0.min.js"></script>
+	<script src="/assets/js/bootstrap/bootstrap.js"></script>
+	<script src="/assets/js/plugins/modernizr/modernizr.js"></script>
+	<script src="/assets/js/plugins/bootstrap-tour/bootstrap-tour.custom.js"></script>
+	<script src="/assets/js/king-common.min.js"></script>
+
+	<script src="/assets/js/plugins/stat/jquery.easypiechart.min.js"></script>
+	<script src="/assets/js/plugins/raphael/raphael-2.1.0.min.js"></script>
+	<script src="/assets/js/plugins/stat/flot/jquery.flot.min.js"></script>
+	<script src="/assets/js/plugins/stat/flot/jquery.flot.resize.min.js"></script>
+	<script src="/assets/js/plugins/stat/flot/jquery.flot.time.min.js"></script>
+	<script src="/assets/js/plugins/stat/flot/jquery.flot.pie.min.js"></script>
+	<script src="/assets/js/plugins/stat/flot/jquery.flot.tooltip.min.js"></script>
+	<script src="/assets/js/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+	<script src="/assets/js/plugins/datatable/jquery.dataTables.min.js"></script>
+	<script src="/assets/js/plugins/datatable/dataTables.bootstrap.js"></script>
+	<script src="/assets/js/plugins/jquery-mapael/jquery.mapael.js"></script>
+	<script src="/assets/js/plugins/raphael/maps/usa_states.js"></script>
+	<script src="/assets/js/king-chart-stat.min.js"></script>
+	<script src="/assets/js/king-table.min.js"></script>
+	<script src="/assets/js/king-components.min.js"></script>
+</body>
+</html>
